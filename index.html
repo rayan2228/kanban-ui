@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="kanban-board">
+      <!-- Add Card Button -->
+      <button class="add-card-btn" onclick="openModal('add-card-modal')">
+        + Add Card
+      </button>
+
+      <!-- Kanban Cards -->
+      <div class="card" style="--card-color: #ff6b6b">
+        <h3>To Do <span class="task-count">2</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 1</div>
+          <div class="task" draggable="true">Task 2</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+
+      <div class="card" style="--card-color: #4ecdc4">
+        <h3>Doing <span class="task-count">1</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+      <div class="card" style="--card-color: #54a0ff">
+        <h3>Done <span class="task-count">0</span></h3>
+        <div class="tasks">
+          <div class="task" draggable="true">Task 3</div>
+        </div>
+        <button class="add-task-btn" onclick="openModal('add-task-modal')">
+          + Add Task
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Card Modal -->
+    <div id="add-card-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('add-card-modal')"
+          >&times;</span
+        >
+        <h2>Add New Card</h2>
+        <form>
+          <label for="card-title">Title</label>
+          <input
+            type="text"
+            id="card-title"
+            placeholder="Enter card title"
+            required
+          />
+          <label for="card-color">Color</label>
+          <input type="color" id="card-color" value="#ff6b6b" />
+          <label for="card-description">Description</label>
+          <textarea
+            id="card-description"
+            placeholder="Enter card description"
+          ></textarea>
+          <button type="submit">Add Card</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('add-task-modal')"
+          >&times;</span
+        >
+        <h2>Add New Task</h2>
+        <form>
+          <label for="task-title">Title</label>
+          <input
+            type="text"
+            id="task-title"
+            placeholder="Enter task title"
+            required
+          />
+          <label for="task-description">Description</label>
+          <textarea
+            id="task-description"
+            placeholder="Enter task description"
+          ></textarea>
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
