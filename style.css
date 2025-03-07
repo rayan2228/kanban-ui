@@ -35,7 +35,7 @@ body {
 }
 
 .task-count {
-  background-color: var(--card-color);
+  background-color: whitesmoke;
   color: #1e1e2f;
   padding: 2px 8px;
   border-radius: 10px;
@@ -100,6 +100,9 @@ body {
 }
 
 /* Modal Styles */
+.show {
+  display: block !important;
+}
 .modal {
   display: none;
   position: fixed;

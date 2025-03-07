@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="kanban-board">
+    <div class="kanban-board" id="kanban-board">
       <!-- Add Card Button -->
       <button class="add-card-btn">+ Add Card</button>
 
@@ -51,12 +51,7 @@
           />
           <label for="card-color">Color</label>
           <input type="color" id="card-color" value="#ff6b6b" />
-          <label for="card-description">Description</label>
-          <textarea
-            id="card-description"
-            placeholder="Enter card description"
-          ></textarea>
-          <button type="submit">Add Card</button>
+          <button id="add-card">Add Card</button>
         </form>
       </div>
     </div>
