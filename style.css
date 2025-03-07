@@ -78,7 +78,7 @@ body {
   background: #444466; /* Color of the thumb on hover */
 }
 .add-task-btn {
-  background-color: var(--card-color);
+  background-color: whitesmoke;
   color: #1e1e2f;
   border: none;
   padding: 8px 12px;
@@ -89,7 +89,7 @@ body {
 }
 
 .add-card-btn {
-  background-color: #54a0ff;
+  background-color: whitesmoke;
   color: #1e1e2f;
   border: none;
   padding: 10px 20px;
