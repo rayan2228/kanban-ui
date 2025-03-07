@@ -9,56 +9,37 @@
   <body>
     <div class="kanban-board">
       <!-- Add Card Button -->
-      <button class="add-card-btn" onclick="openModal('add-card-modal')">
-        + Add Card
-      </button>
+      <button class="add-card-btn">+ Add Card</button>
 
       <!-- Kanban Cards -->
-      <div class="card" style="--card-color: #ff6b6b">
+      <div class="card" style="--card-color: #ff6b6b" id="todo-card">
         <h3>To Do <span class="task-count">2</span></h3>
         <div class="tasks">
           <div class="task" draggable="true">Task 1</div>
           <div class="task" draggable="true">Task 2</div>
         </div>
-        <button class="add-task-btn" onclick="openModal('add-task-modal')">
-          + Add Task
-        </button>
+        <button class="add-task-btn">+ Add Task</button>
       </div>
-      <div class="card" style="--card-color: #4ecdc4">
+      <div class="card" style="--card-color: #4ecdc4" id="doing-card">
         <h3>Doing <span class="task-count">1</span></h3>
         <div class="tasks">
           <div class="task" draggable="true">Task 3</div>
         </div>
-        <button class="add-task-btn" onclick="openModal('add-task-modal')">
-          + Add Task
-        </button>
+        <button class="add-task-btn">+ Add Task</button>
       </div>
-      <div class="card" style="--card-color: #54a0ff">
+      <div class="card" style="--card-color: #54a0ff" id="done-card">
         <h3>Done <span class="task-count">0</span></h3>
         <div class="tasks">
           <div class="task" draggable="true">Task 3</div>
         </div>
-        <button class="add-task-btn" onclick="openModal('add-task-modal')">
-          + Add Task
-        </button>
-      </div>
-      <div class="card" style="--card-color: red">
-        <h3>Done <span class="task-count">0</span></h3>
-        <div class="tasks">
-          <div class="task" draggable="true">Task 3</div>
-        </div>
-        <button class="add-task-btn" onclick="openModal('add-task-modal')">
-          + Add Task
-        </button>
+        <button class="add-task-btn">+ Add Task</button>
       </div>
     </div>
 
     <!-- Add Card Modal -->
     <div id="add-card-modal" class="modal">
       <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('add-card-modal')"
-          >&times;</span
-        >
+        <span class="close-btn">&times;</span>
         <h2>Add New Card</h2>
         <form>
           <label for="card-title">Title</label>
@@ -83,9 +64,7 @@
     <!-- Add Task Modal -->
     <div id="add-task-modal" class="modal">
       <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('add-task-modal')"
-          >&times;</span
-        >
+        <span class="close-btn">&times;</span>
         <h2>Add New Task</h2>
         <form>
           <label for="task-title">Title</label>
@@ -104,5 +83,6 @@
         </form>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
