@@ -48,17 +48,28 @@ body {
   margin-bottom: 15px;
 }
 
-.task {
+.task > * {
   background-color: #3a3a5a;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   cursor: grab;
+  font-size: 16px;
 }
 
 .task:active {
   cursor: grabbing;
 }
+
+.task.dragging {
+  opacity: 0.5;
+  background-color: #444466;
+}
+
+.task.dragging * {
+  visibility: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 8px; /* Width of the scrollbar */
   height: 10px;
