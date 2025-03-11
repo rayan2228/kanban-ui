@@ -1,9 +1,0 @@
-const kanbanBoard = document.querySelector("#kanban-board");
-const addCardModal = document.querySelector("#add-card-modal");
-const addTaskModal = document.querySelector("#add-task-modal");
-const addTaskBtns = document.querySelectorAll(".add-task-btn");
-const addCardBtn = document.querySelector(".add-card-btn");
-const addCard = document.querySelector("#add-card"); // Form for adding a card
-const modalCloseBtns = document.querySelectorAll(".close-btn");
-const cardTitle = document.querySelector("#card-title");
-const cardColor = document.querySelector("#card-color");
