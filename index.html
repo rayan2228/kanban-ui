@@ -46,11 +46,17 @@
             type="text"
             id="card-title"
             placeholder="Enter card title"
+            name="card-title"
             required
           />
           <label for="card-color">Color</label>
-          <input type="color" id="card-color" value="#ff6b6b" />
-          <button id="add-card">Add Card</button>
+          <input
+            type="color"
+            id="card-color"
+            value="#ffffff"
+            name="card-color"
+          />
+          <button type="submit" id="add-card">Add Card</button>
         </form>
       </div>
     </div>
@@ -73,7 +79,7 @@
             id="task-description"
             placeholder="Enter task description"
           ></textarea>
-          <button id="add-task">Add Task</button>
+          <button type="submit" id="add-task">Add Task</button>
         </form>
       </div>
     </div>
