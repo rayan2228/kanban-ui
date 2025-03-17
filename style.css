@@ -12,7 +12,10 @@ body {
   gap: 20px;
   padding: 20px;
 }
-
+.cardsWrapper {
+  display: flex;
+  gap: 20px;
+}
 /* Card Styles */
 .card {
   background-color: #2a2a40;

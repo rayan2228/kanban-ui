@@ -1,19 +1,33 @@
-const kanbanBoard = document.querySelector("#kanban-board");
+const cardsWrapper = document.querySelector("#cardsWrapper");
 const addCardBtnElm = document.querySelector(".add-card-btn");
 const addCardModalElm = document.querySelector("#add-card-modal");
 const addTaskModalElm = document.querySelector("#add-task-modal");
-const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
 const modalCloseBtnsElm = document.querySelectorAll(".close-btn");
 const allModalsElm = document.querySelectorAll(".modal");
 const allForm = document.querySelectorAll("form");
 let targetCard = null;
+getFromLocalstorage();
+function saveOnLocalstorage() {
+  localStorage.setItem("kanbanBoard", JSON.stringify(cardsWrapper.innerHTML));
+}
+function getFromLocalstorage() {
+  cardsWrapper.innerHTML = ""; // Clear existing content
+  if (localStorage.getItem("kanbanBoard")) {
+    cardsWrapper.insertAdjacentHTML(
+      "beforeend",
+      JSON.parse(localStorage.getItem("kanbanBoard"))
+    );
+  }
+const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
+  addTaskBtnsElm.forEach((addTaskBtnElm) =>
+    addTaskBtnElm.addEventListener("click", function (e) {
+      targetCard = e.target.parentElement;
+      showModal(addTaskModalElm);
+    })
+  );
+}
+
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
-addTaskBtnsElm.forEach((addTaskBtnElm) =>
-  addTaskBtnElm.addEventListener("click", function (e) {
-    targetCard = e.target.parentElement;
-    showModal(addTaskModalElm);
-  })
-);
 
 function showModal(modal) {
   modal.classList.add("show");
@@ -60,8 +74,10 @@ function addCard() {
             <div class="tasks"></div>
             <button class="add-task-btn">+ Add Task</button>`;
   card.innerHTML = cardHTML;
-  kanbanBoard.appendChild(card);
+  cardsWrapper.appendChild(card);
   cardTitle.value = "";
   cardColor.value = "#ff6b6b";
-  closeModal()
+  closeModal();
+  saveOnLocalstorage();
+  getFromLocalstorage();
 }
