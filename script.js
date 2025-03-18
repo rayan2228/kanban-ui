@@ -11,14 +11,10 @@ function saveOnLocalstorage() {
   localStorage.setItem("kanbanBoard", JSON.stringify(cardsWrapper.innerHTML));
 }
 function getFromLocalstorage() {
-  cardsWrapper.innerHTML = ""; // Clear existing content
   if (localStorage.getItem("kanbanBoard")) {
-    cardsWrapper.insertAdjacentHTML(
-      "beforeend",
-      JSON.parse(localStorage.getItem("kanbanBoard"))
-    );
+    cardsWrapper.innerHTML = JSON.parse(localStorage.getItem("kanbanBoard"));
   }
-const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
+  const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
   addTaskBtnsElm.forEach((addTaskBtnElm) =>
     addTaskBtnElm.addEventListener("click", function (e) {
       targetCard = e.target.parentElement;
@@ -30,6 +26,8 @@ const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
 
 function showModal(modal) {
+  const taskDate = document.querySelector("#task-date");
+  taskDate.value = new Date().toISOString().split("T")[0];
   modal.classList.add("show");
 }
 
@@ -77,6 +75,23 @@ function addCard() {
   cardsWrapper.appendChild(card);
   cardTitle.value = "";
   cardColor.value = "#ff6b6b";
+  closeModal();
+  saveOnLocalstorage();
+  getFromLocalstorage();
+}
+
+function addTask() {
+  const taskTitle = document.querySelector("#task-title");
+  const taskColor = document.querySelector("#task-color");
+  const taskDate = document.querySelector("#task-date");
+  const task = document.createElement("div");
+  task.classList.add("task");
+  task.setAttribute("style", `--task-color:${taskColor.value}`);
+  task.setAttribute("draggable", "true");
+  task.innerHTML = `<p>${taskTitle.value}</p><h6>${taskDate.value}</h6>`;
+  targetCard.querySelector(".tasks").appendChild(task);
+  taskTitle.value = "";
+  taskColor.value = "#3A3A5A";
   closeModal();
   saveOnLocalstorage();
   getFromLocalstorage();
