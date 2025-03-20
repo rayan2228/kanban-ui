@@ -21,6 +21,10 @@ function getFromLocalstorage() {
       showModal(addTaskModalElm);
     })
   );
+  document.querySelectorAll(".task").forEach((task) => {
+    task.addEventListener("dragstart", handleDragStart);
+    task.addEventListener("dragend", handleDragStop);
+  });
 }
 
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
@@ -95,4 +99,13 @@ function addTask() {
   closeModal();
   saveOnLocalstorage();
   getFromLocalstorage();
+}
+
+function handleDragStart() {
+  requestAnimationFrame(() => {
+    this.classList.add("dragging");
+  });
+}
+function handleDragStop() {
+    this.classList.remove("dragging");
 }
