@@ -38,7 +38,6 @@ function getFromLocalstorage() {
   observeTaskChanges(cards); // Ensure observers persist
 }
 
-
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
 
 function showModal(modal) {
@@ -109,7 +108,7 @@ function addTask() {
   taskTitle.value = "";
   taskColor.value = "#3A3A5A";
   closeModal();
-  updateTaskCount(targetCard)
+  updateTaskCount(targetCard);
   saveOnLocalstorage();
   getFromLocalstorage();
 }
@@ -132,6 +131,14 @@ function handleDragover(e) {
   if (!target || target == draggedTask) return;
   if (target.classList.contains("tasks")) {
     target.appendChild(draggedTask);
+  } else {
+    const { top, height } = target.getBoundingClientRect();
+    const distance = top + height / 2;
+    if (e.clientY < distance) {
+      target.before(draggedTask);
+    } else {
+      target.after(draggedTask);
+    }
   }
 }
 function handleDrop(e) {
@@ -139,13 +146,10 @@ function handleDrop(e) {
 }
 
 function updateTaskCount(card) {
-  console.log(card);
-  
   const tasks = card.querySelector(".tasks").children; // Correct selection
   const taskCount = tasks.length;
   card.querySelector(".task-count").textContent = taskCount;
 }
-
 
 function observeTaskChanges(cards) {
   cards.forEach((card) => {
