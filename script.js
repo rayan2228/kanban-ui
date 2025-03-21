@@ -25,6 +25,10 @@ function getFromLocalstorage() {
     task.addEventListener("dragstart", handleDragStart);
     task.addEventListener("dragend", handleDragStop);
   });
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("dragover", handleDragover);
+    card.addEventListener("drop", handleDrop);
+  });
 }
 
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
@@ -107,5 +111,18 @@ function handleDragStart() {
   });
 }
 function handleDragStop() {
-    this.classList.remove("dragging");
+  this.classList.remove("dragging");
+}
+
+function handleDragover(e) {
+  e.preventDefault();
+  const draggedTask = document.querySelector(".dragging");
+  const target = e.target.closest(".task, .tasks");
+  if (!target || target == draggedTask) return;
+  if (target.classList.contains("tasks")) {
+    target.appendChild(draggedTask);
+  }
+}
+function handleDrop(e) {
+  e.preventDefault();
 }
