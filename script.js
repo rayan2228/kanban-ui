@@ -11,25 +11,33 @@ function saveOnLocalstorage() {
   localStorage.setItem("kanbanBoard", JSON.stringify(cardsWrapper.innerHTML));
 }
 function getFromLocalstorage() {
-  if (localStorage.getItem("kanbanBoard")) {
-    cardsWrapper.innerHTML = JSON.parse(localStorage.getItem("kanbanBoard"));
+  const savedData = localStorage.getItem("kanbanBoard");
+  if (savedData) {
+    cardsWrapper.innerHTML = JSON.parse(savedData);
   }
-  const addTaskBtnsElm = document.querySelectorAll(".add-task-btn");
-  addTaskBtnsElm.forEach((addTaskBtnElm) =>
+
+  // Reapply event listeners and observers after loading from storage
+  document.querySelectorAll(".add-task-btn").forEach((addTaskBtnElm) =>
     addTaskBtnElm.addEventListener("click", function (e) {
       targetCard = e.target.parentElement;
       showModal(addTaskModalElm);
     })
   );
+
   document.querySelectorAll(".task").forEach((task) => {
     task.addEventListener("dragstart", handleDragStart);
     task.addEventListener("dragend", handleDragStop);
   });
-  document.querySelectorAll(".card").forEach((card) => {
+
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
     card.addEventListener("dragover", handleDragover);
     card.addEventListener("drop", handleDrop);
   });
+
+  observeTaskChanges(cards); // Ensure observers persist
 }
+
 
 addCardBtnElm.addEventListener("click", () => showModal(addCardModalElm));
 
@@ -101,6 +109,7 @@ function addTask() {
   taskTitle.value = "";
   taskColor.value = "#3A3A5A";
   closeModal();
+  updateTaskCount(targetCard)
   saveOnLocalstorage();
   getFromLocalstorage();
 }
@@ -112,6 +121,8 @@ function handleDragStart() {
 }
 function handleDragStop() {
   this.classList.remove("dragging");
+  saveOnLocalstorage();
+  getFromLocalstorage();
 }
 
 function handleDragover(e) {
@@ -125,4 +136,20 @@ function handleDragover(e) {
 }
 function handleDrop(e) {
   e.preventDefault();
+}
+
+function updateTaskCount(card) {
+  console.log(card);
+  
+  const tasks = card.querySelector(".tasks").children; // Correct selection
+  const taskCount = tasks.length;
+  card.querySelector(".task-count").textContent = taskCount;
+}
+
+
+function observeTaskChanges(cards) {
+  cards.forEach((card) => {
+    const observer = new MutationObserver(() => updateTaskCount(card));
+    observer.observe(card.querySelector(".tasks"), { childList: true });
+  });
 }
